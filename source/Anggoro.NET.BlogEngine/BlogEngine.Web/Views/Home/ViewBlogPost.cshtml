@@ -1,0 +1,20 @@
+﻿@using BlogEngine.Web.Models
+@model BlogEngine.Web.Models.BlogPost
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@Model.Title</h2>
+<p>Posted on @Convert.ToDateTime(Model.PostDate).ToString("dd MMM, yyyy") - @Html.ActionLink("Back to Blog List", "Index") <br />
+Tags:
+    @{
+        foreach(var item in Model.Tags)
+        {
+            <span>@item</span>
+        }
+    } 
+    </p>
+@Html.Markdown(Model.Body)
+
+@Disqus.ShowComments(pageIdentifier: Model.UrlSlug)

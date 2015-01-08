@@ -1,0 +1,18 @@
+﻿@model IEnumerable<BlogEngine.Web.Models.BlogListing>
+
+<h2>Recent Blog Posts</h2>
+
+@{
+    foreach (var item in Model)
+    {
+        <div class="post">
+            @*<div class="img-post">
+                <a href="@item.UrlSlug" title="@item.Title"></a>
+            </div>*@
+            <div class="inline">
+                <p>@Html.RouteLink(@item.PostDate.ToString("MM/dd/yyyy") + " - "+ @item.Title, "BlogPost", new { postName = @item.UrlSlug })<br />@Html.Raw(item.Description)</p>
+            </div>
+        </div>
+    }
+}
+
